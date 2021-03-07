@@ -17,6 +17,7 @@
 ![Разбиение и последующие слияние](./Images/mergeSort.png)
 
 ## Псевдокод
+*Индексация начинается с 1*
 ```
 // array - сортируемый массив
 // lowIndex, topIndex - границы подмассива, на котором выполняется текущий шаг алгоритма
@@ -27,7 +28,7 @@ MergeSort(array, lowIndex, topIndex):
         return
         
     // Делим массив на 2 подмассива в центре и сортируем их
-    middleIndex = (lowIndex + topIndex)  
+    middleIndex = (lowIndex + topIndex) / 2
     MergeSort(array, lowIndex, middleIndex)   
     MergeSort(array, middleIndex + 1, topIndex)
     
@@ -40,14 +41,14 @@ MergeSort(array, lowIndex, topIndex):
 // middleIndex - точка в которой массив был разделен на 2 подмассива
 Merge(array, lowIndex, middleIndex, topIndex):
     // Создаем подмассивы
-    n1 = lowIndex + middleIndex
-    n2 = middleIndex + 1 + topIndex
+    n1 = middleIndex - lowIndex + 1
+    n2 = topIndex - lowIndex
     leftArray = new Array[n1]    
     rightArray = new Array[n2]
     
     // Копируем в подмассивы значения из оригинального массива
-    for i = 0 to n1 - 1
-        leftArray[i] = array[lowIndex + i];
+    for i = 1 to n1
+        leftArray[i] = array[lowIndex + i - 1];
     for j = 1 to n2
         rightArray[j] = array[middleIndex + i];    
         
