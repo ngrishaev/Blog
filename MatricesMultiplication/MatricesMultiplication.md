@@ -1,5 +1,5 @@
 ﻿# Умножение матриц
-Если **А** - матрица m × n и **B** - матрица n × p то результатом их перемножения будет матрица **С** размером m × p где ![формула суммы](./Images/matrix_sum.png)
+Если **А** - матрица m × n и **B** - матрица n × p, то результатом их перемножения будет матрица **С** размером m × p, где ![формула суммы](./Images/matrix_sum.png)
 
 ### Реализация на C#
 ```
@@ -22,7 +22,7 @@ public static int[,] MultiplicateNaive(int[,] a, int[,] b)
 }
 ```
 ## Алгоритм Штрассена / Strassen's algorithm
-Если **A** и **B** - две квадратные матрицы n × n где n является степенью числа 2 то мы можем ускорить работу обычного алгоритма.
+Если **A** и **B** - две квадратные матрицы n × n, где n является степенью числа 2, то мы можем ускорить работу обычного алгоритма.
 Разделим матрицы **A**, **B** и **C** на равные по размеру блочные матрицы: 
 
 ![разбиение матриц](./Images/matrices.png)
@@ -33,7 +33,7 @@ public static int[,] MultiplicateNaive(int[,] a, int[,] b)
 
 ![дополнительные матрицы_2](./Images/temp_matrices_2.png)
 
-Тогда чтобы посчитать итоговую матрицу **С**:
+Тогда, чтобы посчитать итоговую матрицу **С**:
 
 ![результирующая_матрица](./Images/result.png)
 
@@ -45,7 +45,7 @@ private static int[,] Add(int[,] a, int[,] b)
 {
     var n = a.GetLength(0);
     if (n != a.GetLength(1) || n != b.GetLength(0) || n != b.GetLength(1))
-        throw new ArgumentException("Matrices a and b should be square and same rank");
+        throw new ArgumentException("Matrices a and b should be square and same size");
 
     var matrixSum = new int[n, n];
 
@@ -64,7 +64,7 @@ private static int[,] Subtract(int[,] a, int[,] b)
 {
     var n = a.GetLength(0);
     if (n != a.GetLength(1) || n != b.GetLength(0) || n != b.GetLength(1))
-        throw new ArgumentException("Matrices a and b should be square and same rank");
+        throw new ArgumentException("Matrices a and b should be square and same size");
 
     var matrixSub = new int[n, n];
 
@@ -85,9 +85,9 @@ public static int[,] MultiplicationStrassen(int[,] a, int[,] b)
 {
     var n = a.GetLength(0);
     if (n != a.GetLength(1) || n != b.GetLength(0) || n != b.GetLength(1))
-        throw new ArgumentException("Matrices a and b should be square and same rank");
+        throw new ArgumentException("Matrices a and b should be square and same size");
     if (IsPowerOfTwo(n) == false)
-        throw new ArgumentException("Matrices should have a power of two rank ");
+        throw new ArgumentException("Matrices' sizes should be a power of two");
 
     return MultiplicationStrassenImpl(a, b, n);
 }
